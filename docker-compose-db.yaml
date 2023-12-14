@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  postgres_task_management:
+    container_name: task_management_system
+    image: postgres:16
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: task_data
+
+  postgres_rabbitmq_history:
+    container_name: rabbitmq_history_task
+    image: postgres:16
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: rabbitmq_history_data_task

@@ -1,0 +1,8 @@
+rootProject.name = 'TaskManagementSystem'
+
+includeBuild 'core'
+includeBuild 'eureka-server'
+includeBuild 'gateway'
+includeBuild 'security'
+includeBuild 'rabbitmq'
+includeBuild 'task-service'
