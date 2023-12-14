@@ -1,0 +1,249 @@
+{
+	"info": {
+		"_postman_id": "5e4242b5-5a41-4ec6-9cfe-bcbb41b281bc",
+		"name": "JavaBackend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "22944694"
+	},
+	"item": [
+		{
+			"name": "task-managment",
+			"item": [
+				{
+					"name": "security-task",
+					"item": [
+						{
+							"name": "refresh",
+							"request": {
+								"auth": {
+									"type": "jwt",
+									"jwt": {
+										"algorithm": "HS256",
+										"isSecretBase64Encoded": false,
+										"payload": "{}",
+										"addTokenTo": "header",
+										"headerPrefix": "Bearer",
+										"queryParamKey": "token",
+										"header": "{}"
+									}
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqb2huZG9lIiwiZXhwIjoxNjk4ODYwNjY4fQ.lKPNjpm4MTEmplPnxZbxluvmqELsLBm1qOY33cEnHnb6pjm2-dA6trlt8TONyKDh9Ke0R2VDFl3jRouDpwiDBA",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"refreshToken\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqb2huZG9lIiwiZXhwIjoxNjk4ODYwNjY4fQ.lKPNjpm4MTEmplPnxZbxluvmqELsLBm1qOY33cEnHnb6pjm2-dA6trlt8TONyKDh9Ke0R2VDFl3jRouDpwiDBA\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8765/auth/refresh"
+							},
+							"response": []
+						},
+						{
+							"name": "registration",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"login\": \"johndoe\",\r\n    \"password\": \"secretpassword\",\r\n    \"firstName\": \"john\",\r\n    \"lastName\": \"doe\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8765/trycli/auth/registration"
+							},
+							"response": []
+						},
+						{
+							"name": "login",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXNrc3lzdGVtNiIsImV4cCI6MTcwMjYwMjIyOSwiZmlyc3ROYW1lIjoiam9obiIsImxhc3ROYW1lIjoiZG9lIn0.jNlC4bB1ii8LH76ttxEzl9uxXbzaPfUskj55ntIKQ3RNzzXEUQ5NkZrCH5QS1BPb4GinglZKZX3hYTbE0KcpFw"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"tasksystem1@mail.ru\",\r\n    \"password\": \"secretpassword\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8765/auth/login"
+							},
+							"response": []
+						},
+						{
+							"name": "token",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"refreshToken\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqb2huZG9lIiwiZXhwIjoxNjk4ODYzNjgzfQ.dxuqY18NPG_J7O2g1ce2oTwFppc6-gTYTDOgnP6SzYcvk5XdzsR3Lefk57zx1eOQn-aUpRuJTpwvJtz7Iiz5Yw\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8765/auth/token"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "task",
+					"item": [
+						{
+							"name": "saveTask",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXNrc3lzdGVtNiIsImV4cCI6MTcwMjYwNTA4MSwiZmlyc3ROYW1lIjoiam9obiIsImxhc3ROYW1lIjoiZG9lIn0.-9YRvle8j9afShnyAAQ2kVTO-61oo8KPiMyL_ziFczKOKEdmxb5GjQTzxWE4Fth3ogbNhnflnqBVFaYIADZL_g"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"name task\",\r\n    \"description\": \"description task\",\r\n    \"comments\": [\r\n        {\"text\": \"comments1\"}\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8765/task/create"
+							},
+							"response": []
+						},
+						{
+							"name": "getTask",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8082/task/get/"
+							},
+							"response": []
+						},
+						{
+							"name": "updateTask",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXNrc3lzdGVtNiIsImV4cCI6MTcwMjYwNTA4MSwiZmlyc3ROYW1lIjoiam9obiIsImxhc3ROYW1lIjoiZG9lIn0.-9YRvle8j9afShnyAAQ2kVTO-61oo8KPiMyL_ziFczKOKEdmxb5GjQTzxWE4Fth3ogbNhnflnqBVFaYIADZL_g"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"name task update\",\r\n    \"description\": \"description task\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8765/task/update/7"
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteTask",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXNrc3lzdGVtNiIsImV4cCI6MTcwMjYwNTA4MSwiZmlyc3ROYW1lIjoiam9obiIsImxhc3ROYW1lIjoiZG9lIn0.-9YRvle8j9afShnyAAQ2kVTO-61oo8KPiMyL_ziFczKOKEdmxb5GjQTzxWE4Fth3ogbNhnflnqBVFaYIADZL_g"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": "http://localhost:8765/task/delete/7"
+							},
+							"response": []
+						},
+						{
+							"name": "changeStatus",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXNrc3lzdGVtNiIsImV4cCI6MTcwMjYwNTA4MSwiZmlyc3ROYW1lIjoiam9obiIsImxhc3ROYW1lIjoiZG9lIn0.-9YRvle8j9afShnyAAQ2kVTO-61oo8KPiMyL_ziFczKOKEdmxb5GjQTzxWE4Fth3ogbNhnflnqBVFaYIADZL_g"
+									}
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"status\": \"COMPLETED\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://localhost:8082/task/1/status"
+							},
+							"response": []
+						},
+						{
+							"name": "assignee",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0YXNrc3lzdGVtNiIsImV4cCI6MTcwMjYwNTA4MSwiZmlyc3ROYW1lIjoiam9obiIsImxhc3ROYW1lIjoiZG9lIn0.-9YRvle8j9afShnyAAQ2kVTO-61oo8KPiMyL_ziFczKOKEdmxb5GjQTzxWE4Fth3ogbNhnflnqBVFaYIADZL_g"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "http://localhost:8765/task/assignee"
+							},
+							"response": []
+						},
+						{
+							"name": "getAuthorTasks",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						},
+						{
+							"name": "getAssigneTasks",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
