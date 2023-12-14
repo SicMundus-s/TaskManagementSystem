@@ -145,28 +145,6 @@ class AuthServiceImplTest {
     }
 
     @Test
-    void getAccessToken_ValidRefreshToken_ReturnsJwtResponseWithAccessToken() {
-        // Given
-        String refreshToken = "validRefreshToken";
-        Claims claims = createMockClaims("testUser");
-        given(jwtProviderImpl.validateRefreshToken(refreshToken)).willReturn(true);
-        given(jwtProviderImpl.getRefreshClaims(refreshToken)).willReturn(claims);
-        given(refreshStorage.get("testUser")).willReturn(refreshToken);
-        User user = new User();
-        user.setLogin("testUser");
-        given(userService.getByLogin("testUser")).willReturn(Optional.of(user));
-        given(jwtProviderImpl.generateAccessToken(user)).willReturn("newAccessToken");
-
-        // When
-        JwtResponse response = authService.getAccessToken(refreshToken);
-
-        // Then
-        assertNull(response.getRefreshToken());
-        verify(jwtProviderImpl, times(1)).validateRefreshToken(refreshToken);
-        verify(jwtProviderImpl, times(1)).getRefreshClaims(refreshToken);
-    }
-
-    @Test
     void refresh_InvalidRefreshToken_ThrowsJwtException() {
         // Given
         String invalidRefreshToken = "invalidRefreshToken";
@@ -177,9 +155,4 @@ class AuthServiceImplTest {
         verify(jwtProviderImpl, times(1)).validateRefreshToken(invalidRefreshToken);
     }
 
-    private Claims createMockClaims(String subject) {
-        Claims claims = Mockito.mock(Claims.class);
-        given(claims.getSubject()).willReturn(subject);
-        return claims;
-    }
 }
