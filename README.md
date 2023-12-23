@@ -1,4 +1,4 @@
-Я нёмного расширил тестовое задание, использовал микросервисную архитектуру, rabbitMQ, hateos для security и так же ролевую систему(о ней ниже)
+
 
 БД поднимается с docker-compose-db.yaml, тут сразу две БД, одна для сервисов, другая для rabbit-mq 
 rabbitMQ поднимается с docker-compose-rabbitmq.yaml
